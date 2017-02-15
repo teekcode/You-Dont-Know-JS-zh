@@ -14,7 +14,7 @@
 
 cp1 类型们
 
-大多数开发者认为，一个类似于javascript的动态语言没有类型。我们看看ES5.1规范（http://www.ecma-international.org/ecma-262/5.1/）关于这点是怎么说的：
+大多数开发者认为，一个类似于javascript的动态语言没有类型。我们看看ES5.1规范 (http://www.ecma-international.org/ecma-262/5.1/) 关于这点是怎么说的：
 
 >好难懂
 
