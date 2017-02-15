@@ -2,6 +2,8 @@
 
 This is the Chinese version of You don't know JS. All of them are translated by myself. For personal study use only. 
 
+original repo: https://github.com/getify/You-Dont-Know-JS
+
 #概述
 
 第一阶段先只逐句翻译。
