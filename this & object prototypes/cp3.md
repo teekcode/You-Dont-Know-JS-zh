@@ -1,3 +1,35 @@
+896eeb4  on 13 Jul 2016
+@regularmike regularmike Add missing word
+<!-- TOC -->
+
+- [You Don't Know JS: *this* & Object Prototypes](#you-dont-know-js-this--object-prototypes)
+- [Chapter 3: Objects](#chapter-3-objects)
+    - [Syntax](#syntax)
+    - [Type](#type)
+        - [Built-in Objects](#built-in-objects)
+    - [Contents](#contents)
+        - [Computed Property Names](#computed-property-names)
+        - [Property vs. Method](#property-vs-method)
+        - [Arrays](#arrays)
+        - [Duplicating Objects](#duplicating-objects)
+        - [Property Descriptors](#property-descriptors)
+            - [Writable](#writable)
+            - [Configurable](#configurable)
+            - [Enumerable](#enumerable)
+        - [Immutability](#immutability)
+            - [Object Constant](#object-constant)
+            - [Prevent Extensions](#prevent-extensions)
+            - [Seal](#seal)
+            - [Freeze](#freeze)
+        - [`[[Get]]`](#get)
+        - [`[[Put]]`](#put)
+        - [Getters & Setters](#getters--setters)
+        - [Existence](#existence)
+            - [Enumeration](#enumeration)
+    - [Iteration](#iteration)
+    - [Review (TL;DR)](#review-tldr)
+
+<!-- /TOC -->
 # You Don't Know JS: *this* & Object Prototypes
 # Chapter 3: Objects
 
