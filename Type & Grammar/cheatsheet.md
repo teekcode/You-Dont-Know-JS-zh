@@ -17,7 +17,7 @@ es6:
 foo( a.slice() ); //copy new array, foo will not affect original a;
 
 >cp2: line 690
-array.splice();
+array.splice(); //cut the array
 
 # F2.1: array functional operation
 
@@ -36,6 +36,8 @@ array.join();
 var a = "hi"
 a.split(""); //["h", "i"]
 
+link: a.split("").join("")
+
 var b = "hello world"
 b.split(" "); //["hello", "world"]
 
@@ -45,5 +47,9 @@ b.split(" "); //["hello", "world"]
 
 var a = {key:"value"}
 Object.keys(a) //["key"]
+
+# F5 null
+
+
 
 
