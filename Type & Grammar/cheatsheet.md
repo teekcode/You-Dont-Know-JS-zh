@@ -41,7 +41,11 @@ link: a.split("").join("")
 var b = "hello world"
 b.split(" "); //["hello", "world"]
 
->related problem: `StripUrlParams`, `DidYouMean`
+>related problem: `StripUrlParams`, `DidYouMean`o
+
+advanced thinking:
+
+using pattern to trans string to array, such as string.match(using g flag) /string.replace(filter useless character to "")
 
 # F4：object to array
 
