@@ -26,4 +26,4 @@ function solution(input, markers) {
     return input.split('\n').map(i => i.split(pattern)[0].trim()).join('\n');
 }
 
-module.exports = solution;
+module.exports.f = solution;
