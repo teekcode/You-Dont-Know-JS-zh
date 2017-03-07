@@ -5,12 +5,26 @@
 
 # prototype
 
+```js
     var a = { 
-        key1 : 2;
+        key1 : undefined;
     }
+```
 
-    a.key1 //needn't to consider prototype
-    a.key2 //need to consider prototype
+a.key1 //needn't to consider prototype
+a.key2 //need to consider prototype
+
+但是这两个返回的都是`undefined`;如何区分呢？
+
+"key1" in a //true;
+"key2" in a //false;
+// `in` will check if a property is in high-level chain 
+
+or 
+
+a.hasOwnProperty("key1") //true
+a.hasOwnProperty("key2") //false
+
 
 # __proto__
 
@@ -29,27 +43,50 @@ Just as we saw earlier with .constructor, .__proto__ doesn't actually exist on t
 
 # for ... in
 
-https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...in
+>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...in
 
-    var triangle = {a: 1, b: 2, c: 3};
+```js
+var triangle = {a: 1, b: 2, c: 3};
 
-    function ColoredTriangle() {
-    this.color = 'red';
-    }
+function ColoredTriangle() {
+this.color = 'red';
+}
 
-    ColoredTriangle.prototype = triangle;
+ColoredTriangle.prototype = triangle;
 
-    var obj = new ColoredTriangle();
+var obj = new ColoredTriangle();
 
-    for (var prop in obj) {
+for (var prop in obj) {
     if (obj.hasOwnProperty(prop)) {
         console.log('obj.' + prop + ' = ' + obj[prop]);
     } 
-    }
-
-    // Output:
-    // "obj.color = red"
+}
+// Output:
+// "obj.color = red"
+```
 
 # for ... of
 
- It may seem a strange omission by ES6, but regular `object`s intentionally do not come with a default *iterator* the way `array`s do. The reasons go deeper than we will cover here. If all you want is to iterate over the properties of an object (with no particular guarantee of ordering), `Object.keys(..)` returns an `array`, which can then be used like `for (var k of Object.keys(obj)) { ..`. Such a `for..of` loop over an object's keys would be similar to a `for..in` loop, except that `Object.keys(..)` does not include properties from the `[[Prototype]]` chain while `for..in` does (see the *this & Object Prototypes* title of this series).
+It may seem a strange omission by ES6, but regular `object`s intentionally do not come with a default *iterator* the way `array`s do. The reasons go deeper than we will cover here. If all you want is to iterate over the properties of an object (with no particular guarantee of ordering), `Object.keys(..)` returns an `array`, which can then be used like `for (var k of Object.keys(obj)) { ..`. Such a `for..of` loop over an object's keys would be similar to a `for..in` loop, except that `Object.keys(..)` does not include properties from the `[[Prototype]]` chain while `for..in` does (see the *this & Object Prototypes* title of this series).
+
+拓展：
+
+```js
+var randoms = {
+	[Symbol.iterator]: function() {
+		return {
+			next: function() {
+				return { value: Math.random() };
+			}
+		};
+	}
+};
+
+var randoms_pool = [];
+for (var n of randoms) {
+	randoms_pool.push( n );
+
+	// don't proceed unbounded!
+	if (randoms_pool.length === 100) break;
+}
+```
