@@ -6,7 +6,7 @@ original repo: https://github.com/getify/You-Dont-Know-JS
 
 #概述
 
-第一阶段先只逐句翻译。
+第一阶段先只逐句翻译,不翻译废话了。
 
 ~~第二阶段细校验加上自己的理解，笔记。~~
 
