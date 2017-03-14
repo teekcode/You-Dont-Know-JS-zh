@@ -416,6 +416,7 @@ You almost certainly won't want to intentionally create *this* level of interlea
 We'll discuss generator concurrency in more detail at the end of this chapter.
 
 ## Generator'ing Values
+源源不断产生值
 
 In the previous section, we mentioned an interesting use for generators, as a way to produce values. This is **not** the main focus in this chapter, but we'd be remiss if we didn't cover the basics, especially because this use case is essentially the origin of the name: generators.
 
