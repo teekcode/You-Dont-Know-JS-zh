@@ -23,6 +23,7 @@ In Chapter 1, we defined "scope" as the set of rules that govern how the *Engine
 There are two predominant models for how scope works. The first of these is by far the most common, used by the vast majority of programming languages. It's called **Lexical Scope**, and we will examine it in-depth. The other model, which is still used by some languages (such as Bash scripting, some modes in Perl, etc.) is called **Dynamic Scope**.
 
 Dynamic Scope is covered in Appendix A. I mention it here only to provide a contrast with Lexical Scope, which is the scope model that JavaScript employs.
+语言里面，有两种域，词法域和动态域。js用前者。
 
 ## Lex-time
 
@@ -234,7 +235,7 @@ Your code will almost certainly tend to run slower simply by the fact that you i
 ## Review (TL;DR)
 
 Lexical scope means that scope is defined by author-time decisions of where functions are declared. The lexing phase of compilation is essentially able to know where and how all identifiers are declared, and thus predict how they will be looked-up during execution.
-词法域的意思是，在编写代码的时刻，函数在哪里声明就决定了域在哪里定义了。
+词法域——在程序员写代码时作出的 "在哪里声明函数" 这个问题决定的。
 
 Two mechanisms in JavaScript can "cheat" lexical scope: `eval(..)` and `with`. The former can modify existing lexical scope (at runtime) by evaluating a string of "code" which has one or more declarations in it. The latter essentially creates a whole new lexical scope (again, at runtime) by treating an object reference *as* a "scope" and that object's properties as scoped identifiers.
 
