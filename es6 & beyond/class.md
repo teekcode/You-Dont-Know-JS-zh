@@ -32,28 +32,32 @@ teekcode修订于17.3.24
 ## ES5继承
 
 this.cp6 line 239
+改编
 ```js
-function Foo(who) {
-	this.me = who;
+function Father(age) {
+  this.sex = 'male';
+  this.age = age
 }
-Foo.prototype.identify = function() {
-	return "I am " + this.me;
+Father.prototype.showage = function() {
+	return "I am " + this.age + "years old";
 };
 
-function Bar(who) {
-	Foo.call( this, who );
+function Son(age) {
+	Father.call( this, age );
 }
-Bar.prototype = Object.create( Foo.prototype );
+Son.prototype = Object.create( Father.prototype );
 
-Bar.prototype.speak = function() {
-	alert( "Hello, " + this.identify() + "." );
+Son.prototype.talkmore = function() {
+  console.log(this.showage(), "and i am young");
 };
 
-var b1 = new Bar( "b1" );
-var b2 = new Bar( "b2" );
+var s = new Son(18);
+s.showage();
+s.talkmore();
 
-b1.speak();
-b2.speak();
+var f = new Father(40);
+f.showage();
+f.talkmore();//not a function
 ```
 
 https://itbilu.com/javascript/js/EkR85KsBW.html
@@ -76,6 +80,7 @@ function Student(name, sex) {
 
 Student.prototype = Object.create(Person.prototype);
 
+//doing more things than previous example
 Student.prototype.constructor = Student;
 
 var student = new Student('王二小', '女');
