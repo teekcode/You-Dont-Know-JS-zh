@@ -3,7 +3,7 @@
 ## Built-in Object
 
 
-# prototype
+# 原型对象
 
 ```js
     var a = { 
@@ -11,47 +11,38 @@
     }
 ```
 
-a.key1 //needn't to consider prototype
-a.key2 //need to consider prototype
+a.key1 //因为找到了key1属性，所以不用走原型链 
+a.key2 //继续找原型链，但没有找到，所以返回undefined
 
-但是这两个返回的都是`undefined`;如何区分呢？
+但是这两个返回的都是`undefined`, 如何区分是否有这个属性呢？
 
-"key1" in a //true;
-"key2" in a //false;
-// `in` will check if a property is in high-level chain 
+方法一：in
 
-or 
+"key1" in a //有，但不一是a的，有可能是原型链上的。
+"key2" in a //没有
 
-a.hasOwnProperty("key1") //true
-a.hasOwnProperty("key2") //false
+>Notice： that `in` will check if a property is in high-level chain, such as `for ... in`
 
+方法二：hasOwnProperty
 
-# __proto__
+a.hasOwnProperty("key1") //有，自己就有
+a.hasOwnProperty("key2") //自己没有
 
-We can also directly retrieve the [[Prototype]] of an object. As of ES5, the standard way to do this is:
+## __proto__
 
-Object.getPrototypeOf( a );
-And you'll notice that object reference is what we'd expect:
-
-Object.getPrototypeOf( a ) === Foo.prototype; // true
-Most browsers (not all!) have also long supported a non-standard alternate way of accessing the internal [[Prototype]]:
-
-a.__proto__ === Foo.prototype; // true
 The strange .__proto__ (not standardized until ES6!) property "magically" retrieves the internal [[Prototype]] of an object as a reference, which is quite helpful if you want to directly inspect (or even traverse: .__proto__.__proto__...) the chain.
 
-Just as we saw earlier with .constructor, .__proto__ doesn't actually exist on the object you're inspecting (a in our running example). In fact, it exists (non-enumerable; see Chapter 2) on the built-in Object.prototype, along with the other common utilities (.toString(), .isPrototypeOf(..), etc).
+## for ... in
 
-# for ... in
-
->https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...in
+对象模拟集合来使用。
 
 ```js
-var triangle = {a: 1, b: 2, c: 3};
-
+//https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...in
 function ColoredTriangle() {
 this.color = 'red';
 }
 
+var triangle = {a: 1, b: 2, c: 3};
 ColoredTriangle.prototype = triangle;
 
 var obj = new ColoredTriangle();
@@ -61,13 +52,22 @@ for (var prop in obj) {
         console.log('obj.' + prop + ' = ' + obj[prop]);
     } 
 }
-// Output:
 // "obj.color = red"
 ```
+> for ... of (es6)
 
-# for ... of
+```js
+
+...same
+
+for (var k of Object.keys(obj)) {
+	console.log('obj.' + k + '=' + obj[k]);
+}
+```
 
 It may seem a strange omission by ES6, but regular `object`s intentionally do not come with a default *iterator* the way `array`s do. The reasons go deeper than we will cover here. If all you want is to iterate over the properties of an object (with no particular guarantee of ordering), `Object.keys(..)` returns an `array`, which can then be used like `for (var k of Object.keys(obj)) { ..`. Such a `for..of` loop over an object's keys would be similar to a `for..in` loop, except that `Object.keys(..)` does not include properties from the `[[Prototype]]` chain while `for..in` does (see the *this & Object Prototypes* title of this series).
+
+# 随机数生成器
 
 拓展：
 
